@@ -60,8 +60,8 @@ jobs:
       
       - name: app
         image: python:3.11
-        script:
-         - python3 app.py $CHAR_VARIABLE > result.txt
+        run:
+          python3 app.py $CHAR_VARIABLE > result.txt
 
       - name: Enable step debugging
         run: |
@@ -75,4 +75,3 @@ jobs:
           name: results
           path: |
             result.txt
-            char.txt
