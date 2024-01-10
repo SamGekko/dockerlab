@@ -23,7 +23,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
       - name: Run tests
         run: python -m unittest discover
 
@@ -46,7 +45,6 @@ jobs:
         run: |
           docker build -t ghcr.io/samgekko/dockerlab:latest .
           docker push ghcr.io/samgekko/dockerlab:latest
-
       - name: Run application in Docker container
         run: docker run ghcr.io/samgekko/dockerlab:latest
 
@@ -59,15 +57,11 @@ jobs:
       CHAR_VARIABLE: '5'
 
     steps:
-      - name: Log in to Docker Registry
-        run: docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
-
+      
       - name: app
-        run: |
-          docker run -d --name my_container_GHCR ghcr.io/samgekko/dockerlab:latest
-          docker exec $(docker ps -q --filter "name=my_container_GHCR") sh -c 'python app.py "${CHAR_VARIABLE}" > result.txt'
-          echo "${{ env.CHAR_VARIABLE }}" > char.txt
-          docker stop my_container_GHCR && docker rm my_container_GHCR
+        image: python:3.11
+        script:
+         - python3 app.py $CHAR_VARIABLE > result.txt
 
       - name: Enable step debugging
         run: |
