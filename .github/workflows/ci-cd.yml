@@ -60,9 +60,8 @@ jobs:
 
       - name: pyapp
         run: |
-          docker run ghcr.io/samgekko/dockerlab:latest python app.py "${{ env.INPUT_ENV_VARIABLE }}" > result.txt
-        env:
-          INPUT_ENV_VARIABLE: ${{ secrets.CHAR_VARIABLE }}
+          docker run ghcr.io/samgekko/dockerlab:latest python app.py "${{ secrets.CHAR_VARIABLE }}" > result.txt
+
       - name: Enable step debugging
         run: |
           echo "##[debug]Enabling step debugging"
