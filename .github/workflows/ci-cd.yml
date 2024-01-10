@@ -63,6 +63,11 @@ jobs:
           docker run ghcr.io/samgekko/dockerlab:latest python app.py "${{ env.INPUT_ENV_VARIABLE }}" > result.txt
         env:
           INPUT_ENV_VARIABLE: ${{ secrets.CHAR_VARIABLE }}
+      - name: Enable step debugging
+        run: |
+          echo "##[debug]Enabling step debugging"
+          env
+        if: github.event_name == 'push'
 
       - name: upload artifacts
         uses: actions/upload-artifact@v2
