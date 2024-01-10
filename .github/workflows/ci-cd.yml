@@ -60,8 +60,8 @@ jobs:
 
       - name: app
         run: |
-          docker run ghcr.io/samgekko/dockerlab:latest python app.py $CHAR_VARIABLE > result.txt
-          echo $CHAR_VARIABLE > char.txt
+          docker run ghcr.io/samgekko/dockerlab:latest python app.py "$CHAR_VARIABLE" > result.txt
+          echo "$CHAR_VARIABLE" > char.txt
 
       - name: Enable step debugging
         run: |
