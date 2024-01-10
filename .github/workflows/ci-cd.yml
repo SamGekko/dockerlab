@@ -57,10 +57,13 @@ jobs:
       CHAR_VARIABLE: '5'
 
     steps:
-      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
       - name: app
-        image: python:3.11
-        run:
+        run: |
           python3 app.py $CHAR_VARIABLE > result.txt
 
       - name: Enable step debugging
