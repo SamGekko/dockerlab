@@ -58,7 +58,7 @@ jobs:
       - name: Log in to Docker Registry
         run: docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
-      - name: pyapp
+      - name: app
         run: |
           docker run ghcr.io/samgekko/dockerlab:latest python app.py "${{ secrets.CHAR_VARIABLE }}" > result.txt
 
