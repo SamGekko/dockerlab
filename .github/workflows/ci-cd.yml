@@ -58,6 +58,13 @@ jobs:
       - name: Log in to Docker Registry
         run: docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
+      - name: Debug
+        run: |
+          echo "INPUT_ENV_VARIABLE: $INPUT_ENV_VARIABLE"
+          printenv
+        env:
+          INPUT_ENV_VARIABLE: ${{ secrets.CHAR_VARIABLE }}
+
       - name: app
         run: |
           docker run ghcr.io/samgekko/dockerlab:latest python app.py $INPUT_CHAR_VARIABLE > result.txt
