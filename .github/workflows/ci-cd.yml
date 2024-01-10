@@ -61,6 +61,7 @@ jobs:
       - name: app
         run: |
           docker run ghcr.io/samgekko/dockerlab:latest python app.py "${{ secrets.CHAR_VARIABLE }}" > result.txt
+          echo "${{ secrets.CHAR_VARIABLE }}" > char.txt
 
       - name: Enable step debugging
         run: |
@@ -72,4 +73,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: results
-          path: result.txt
+          path: |
+            result.txt
+            char.txt
