@@ -57,11 +57,18 @@ jobs:
     steps:
       - name: Log in to Docker Registry
         run: docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+      - name: Debug
+        run: |
+          echo "CHAR_VARIABLE: $CHAR_VARIABLE"
+        env:
+          CHAR_VARIABLE: $CHAR_VARIABLE
 
       - name: app
         run: |
-          docker run ghcr.io/samgekko/dockerlab:latest python app.py "$CHAR_VARIABLE" > result.txt
+          docker run ghcr.io/samgekko/dockerlab:latest python app.py $CHAR_VARIABLE > result.txt
           echo "$CHAR_VARIABLE" > char.txt
+        env:
+          CHAR_VARIABLE: $CHAR_VARIABLE
 
       - name: Enable step debugging
         run: |
