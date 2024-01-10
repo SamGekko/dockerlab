@@ -62,16 +62,12 @@ jobs:
       - name: Log in to Docker Registry
         run: docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Run application in Docker container
-        run: docker run -d --name my_container_GHCR ghcr.io/samgekko/dockerlab:latest
-
       - name: app
         run: |
+          docker run -d --name my_container_GHCR ghcr.io/samgekko/dockerlab:latest
           docker exec my_container_GHCR sh -c 'python app.py "${CHAR_VARIABLE}" > result.txt'
           echo "${{ env.CHAR_VARIABLE }}" > char.txt
-
-      - name: Stop and remove the container
-        run: docker stop my_container_GHCR && docker rm my_container_GHCR
+          docker stop my_container_GHCR && docker rm my_container_GHCR
 
       - name: Enable step debugging
         run: |
