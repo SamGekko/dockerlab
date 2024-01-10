@@ -55,6 +55,9 @@ jobs:
 
     needs: build_and_deploy
 
+    env:
+      CHAR_VARIABLE: '5'
+
     steps:
       - name: Log in to Docker Registry
         run: docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
