@@ -9,8 +9,8 @@ def char_to_int(char_variable):
 
 if __name__ == "__main__":
     # Чтение символа из переменной окружения
-    char_variable = os.getenv('INPUT_CHAR_VARIABLE', None )
-    print(f"Значение переменной INPUT_CHAR_VARIABLE : {char_variable}")
+    char_variable = os.getenv('CHAR_VARIABLE', None )
+    print(f"Значение переменной CHAR_VARIABLE : {char_variable}")
     if char_variable is None:
         print("Переменная окружения CHAR_VARIABLE не определена.")
     else:
