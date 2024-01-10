@@ -55,7 +55,7 @@ jobs:
     needs: build_and_deploy
 
     steps:
-      - name: pyapp
+      - name: app
         run: |
           docker run ghcr.io/samgekko/dockerlab:latest python app.py "${{ env.INPUT_ENV_VARIABLE }}" > result.txt
         env:
