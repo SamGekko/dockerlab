@@ -55,7 +55,9 @@ jobs:
         # Задача 1: Запуск скрипта с параметрами и сохранение результатов в артефактах
         - name: Task 1
           run: |
-            docker run ghcr.io/SamGekko/dockerlab:latest python app.py "${{ inputs.env_variable }}" > result.txt
+            docker run ghcr.io/SamGekko/dockerlab:latest python app.py "${{ env.INPUT_ENV_VARIABLE }}" > result.txt
+	  env:
+            INPUT_ENV_VARIABLE: ${{ secrets.CHAR_VARIABLE }}
 
         - name: Upload artifacts
           uses: actions/upload-artifact@v2
